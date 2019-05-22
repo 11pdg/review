@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>工作台</title>
+    <link rel="stylesheet" type="text/css" href="libs/Font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="libs/mui/css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <style>
+        .title{padding-left: 1rem;line-height: 2.8rem;font-size: .9rem;color: #333;}
+        .title .tips{margin-left: .4rem;font-size: .7rem;color: #888;}
+        .apps{display: flex;flex-wrap: wrap;padding-top: 1.2rem;text-align: center;border-top: 1px solid #dbdbdb;border-bottom: 1px solid #dbdbdb;background-color: #fff;}
+        .apps a{width: 25%;margin-bottom: 1.2rem;}
+        .apps img{width: 2.8rem;height: 2.8rem;}
+        .apps p{margin-top: .3rem;font-size: .9rem;color: #333;}
+        a{text-align: center;}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="" class="back">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <h1>工作台</h1>
+        <a class="home">
+            <img src="img/search.png" alt="">
+        </a>
+    </div>
+
+    <h6 class="title">我的应用 <span class="tips">可拖拽操作</span></h6>
+    <div class="apps" id="my">
+        <a href="">
+            <img src="img/app1.png" alt="">
+            <p>待办公文</p>
+        </a>
+        <a href="">
+            <img src="img/app2.png" alt="">
+            <p>待阅公文</p>
+        </a>
+    </div>
+    
+    <h6 class="title">常用应用</h6>
+    <div class="apps" id="often">
+        <a href="">
+            <img src="img/app3.png" alt="">
+            <p>已办公文</p>
+        </a>
+        <a href="">
+            <img src="img/app4.png" alt="">
+            <p>已阅公文</p>
+        </a>
+        <a href="">
+            <img src="img/app5.png" alt="">
+            <p>我的创建</p>
+        </a>
+        <a href="">
+            <img src="img/app6.png" alt="">
+            <p>我的关注</p>
+        </a>
+        <a href="">
+            <img src="img/app7.png" alt="">
+            <p>我的草稿</p>
+        </a>
+        <a href="">
+            <img src="img/app8.png" alt="">
+            <p>我的邮件</p>
+        </a>
+        <a href="">
+            <img src="img/app1.png" alt="">
+            <p>我的收藏</p>
+        <!-- </a> -->
+    </div>
+
+    <script src="libs/mui/js/mui.min.js"></script>
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/jquery-ui/jquery-ui.js"></script>
+    <script src="libs/jquery-ui/jquery.ui.touch-punch.min.js"></script>
+    <script>
+        $("#often a").draggable({
+            appendTo: "body",
+            helper: "clone"
+        });
+        $("#my").droppable({
+            accept: ":not(#my)",
+            drop: function(e,ui){
+                if(ui.draggable.parent().attr('id')!='my') ui.draggable.appendTo(this)
+            }
+        });
+        $("#my a").draggable({
+            appendTo: "body",
+            helper: "clone"
+        });
+        $("#often").droppable({
+            accept: ":not(#often)",
+            drop: function(e,ui){
+                if(ui.draggable.parent().attr('id')!='often') ui.draggable.appendTo(this)
+            }
+        }).sortable();
+    </script>
+</body>
+</html>
